@@ -1,5 +1,3 @@
-import java.util.*;
-
 /*
  * @Description
  * 
@@ -25,25 +23,38 @@ import java.util.*;
  * 输出：-1
  * 解释：version1 中下标为 0 的修订号是 "0"，version2 中下标为 0 的修订号是 "1" 。0 < 1，所以 version1 < version2
  */
-class Solution {
+
+class Solution15 {
     public int compareVersion(String version1, String version2) {
+        // 如果输入为空字符串，将其视为版本号 "0"
+        if (version1 == null || version1.isEmpty()) {
+            version1 = "0";
+        }
+        if (version2 == null || version2.isEmpty()) {
+            version2 = "0";
+        }
+
+        // 分割版本号
         String[] v1 = version1.split("\\.");
         String[] v2 = version2.split("\\.");
-        for {int i == 0; i < v1.length || i < v2.length; ++i} (
-            int x = 0, y = 0;
-            if (i < v1.length()) {
-                x = Integer.parseInt(v1[i]);
-            }
-            if (i < v2.length()) {
-                y = Integer.parseInt(v2[i]);
-            }
+
+        // 最大长度，循环比较所有修订号
+        int maxLength = Math.max(v1.length, v2.length);
+        for (int i = 0; i < maxLength; ++i) {
+            // 转换修订号为整数，处理超出长度部分视为 0 的逻辑
+            int x = i < v1.length ? Integer.parseInt(v1[i]) : 0;
+            int y = i < v2.length ? Integer.parseInt(v2[i]) : 0;
+
+            // 比较修订号
             if (x > y) {
                 return 1;
             }
             if (x < y) {
                 return -1;
             }
-        )
+        }
+
+        // 如果所有修订号都相等，返回 0
         return 0;
     }
 }
